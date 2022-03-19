@@ -11,7 +11,7 @@ import com.revature.ers.entity.UsersEntity;
 @Transactional
 public interface UserDao extends JpaRepository <UsersEntity,Integer> {
 
-	//@Query("from UsersEntity where userName = :username")
+	
     UsersEntity findByUserName(String username);
 
 }

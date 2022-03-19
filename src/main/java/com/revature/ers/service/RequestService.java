@@ -14,11 +14,13 @@ public interface RequestService {
 	
 	//view pending request
 	List<RequestPojo> viewPendingRequest();
+	//view  request by status
+	List<RequestPojo> viewRequestsByStatus(int status);
 	
 	//manage to review and either approve, denied the request
 	RequestPojo reviewRequest(int reqId, int status);
 	
 	RequestPojo fetchARequest(int reqId);
 	
-	RequestPojo deleteRequest(int reqId);
+	List<RequestPojo>  deleteRequest(int reqId);
 }

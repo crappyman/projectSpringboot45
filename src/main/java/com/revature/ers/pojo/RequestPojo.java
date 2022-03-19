@@ -1,4 +1,7 @@
 package com.revature.ers.pojo;
+
+import java.util.Date;
+
 public class RequestPojo {
 
 	private int reqId;
@@ -25,7 +28,7 @@ public class RequestPojo {
 		this.reqStatus = reqStatus;
 	}
 
-	public RequestPojo(int reqId, int userId, int reqType, int reqAmount, String submitDate, String approveDate,
+	public RequestPojo(int reqId, int userId, int reqType, int reqAmount, String submitDate, Date approveDate,
 			int manager, int reqStatus) {
 		super();
 		this.reqId = reqId;
@@ -33,11 +36,15 @@ public class RequestPojo {
 		this.reqType = reqType;
 		this.reqAmount = reqAmount;
 		this.submitDate = submitDate;
-		this.approveDate = approveDate;
+		if(approveDate != null)
+			this.approveDate = approveDate.toString();
 		this.manager = manager;
 		this.reqStatus = reqStatus;
 	}
 
+
+	
+	
 	public int getReqId() {
 		return reqId;
 	}
@@ -46,11 +53,13 @@ public class RequestPojo {
 		this.reqId = reqId;
 	}
 
-	public int getuserId() {
+
+
+	public int getUserId() {
 		return userId;
 	}
 
-	public void setuserId(int userId) {
+	public void setUserId(int userId) {
 		this.userId = userId;
 	}
 
