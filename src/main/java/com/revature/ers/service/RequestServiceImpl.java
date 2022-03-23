@@ -32,7 +32,7 @@ public class RequestServiceImpl implements RequestService {
 			// approveDate,int manager, int reqStatus
 			RequestPojo requsetPojo = new RequestPojo(requsetEntity.getReqId(), requsetEntity.getUserId(),
 					requsetEntity.getReqType(), requsetEntity.getReqAmount(), requsetEntity.getSubmitDate().toString(),
-					requsetEntity.getApproveDate(), requsetEntity.getManager(), requsetEntity.getReqType());
+					requsetEntity.getApproveDate(), requsetEntity.getManager(), requsetEntity.getReqStatus());
 			allRequestPojo.add(requsetPojo);
 		}
 		return allRequestPojo;
@@ -42,14 +42,15 @@ public class RequestServiceImpl implements RequestService {
 	public RequestPojo addRequest(RequestPojo requestPojo) {
 		// int reqId, int userId, int reqType, int reqAmount, String submitDate, String
 		// approveDate, Integer manager, int reqStatus
-
+		System.out.println(requestPojo);
 		RequestEntity requestEntity = new RequestEntity(requestPojo.getReqId(), requestPojo.getUserId(),
 				requestPojo.getReqType(), requestPojo.getReqAmount(), new Date(), requestPojo.getManager(),
-				requestPojo.getReqStatus());
+				1);
+		
 		requestEntity = requestDao.saveAndFlush(requestEntity);
 		requestPojo = new RequestPojo(requestEntity.getReqId(), requestEntity.getUserId(), requestEntity.getReqType(),
 				requestEntity.getReqAmount(), requestEntity.getSubmitDate().toString(), requestEntity.getApproveDate(),
-				requestEntity.getManager(), requestEntity.getReqType());
+				requestEntity.getManager(), requestEntity.getReqStatus());
 		return requestPojo;
 	}
 

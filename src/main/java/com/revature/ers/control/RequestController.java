@@ -3,6 +3,7 @@ package com.revature.ers.control;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,7 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.revature.ers.pojo.RequestPojo;
 import com.revature.ers.service.RequestService;
 //import com.revature.ers.service.RequestServiceImpl;
+
 @RestController
+@CrossOrigin
 @RequestMapping("api/request")
 public class RequestController {
 	
@@ -26,17 +29,18 @@ public class RequestController {
 	}
 	@Autowired
 	RequestService requestService;
-	//http://localhost:1010/api/allRequests
+	
+	//http:http://localhost:4444/api/request/allRequests
 	@GetMapping("allRequests")
 	 List<RequestPojo> viewAllRequest(){
 	return requestService.viewAllRequest();
 	}
-	//http://localhost:1010/api/requests
+	//http://localhost:4444/api/request/addRequest
 		@PostMapping("addRequest")
 		RequestPojo addRequest(@RequestBody RequestPojo requestPojo) {
 			return requestService.addRequest(requestPojo);
 		}
-		//http://localhost:1010/api/requests
+		//http://localhost:4444/api/requests
 		//view pending request
 		@GetMapping("pendingRequests")
 		List<RequestPojo> viewPendingRequest(){
@@ -47,20 +51,23 @@ public class RequestController {
 			return requestService.viewRequestsByStatus(status);
 		}
 		//manage to review and either approve, denied the request
-		//http://localhost:1010/api/requests/{reqId}/{status}
+		//http://localhost:4444/api/request/modifyRequestStatus/15/2us}
 		@PutMapping("modifyRequestStatus/{reqId}/{status}")
 		RequestPojo reviewRequest(@PathVariable int reqId, @PathVariable int status) {
-			
+			System.out.println(reqId + " status "+ status);
 			return requestService.reviewRequest(reqId, status);
 		}
-		//http://localhost:1010/api/requests/1
+		//http://localhost:4444/api/request/fetchRequests/15
 		@GetMapping("fetchRequests/{reqId}")
 		RequestPojo fetchARequest(@PathVariable ("reqId") int reqId) {
 			return requestService.fetchARequest(reqId);
 		}
-		//http://localhost:1010/api/requests/2
+		//http://localhost:4444/api/request/deleteRequest/16
 		@DeleteMapping("deleteRequest/{reqId}")
 		List<RequestPojo> deleteRequest(@PathVariable ("reqId") int reqId) {
 			return requestService.deleteRequest(reqId);
 		}
+		
+		
+		
 }

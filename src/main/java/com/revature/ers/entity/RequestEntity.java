@@ -9,10 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-//@Data
-//@AllArgsConstructor
-//@NoArgsConstructor
-//@Builder
+
 @Entity
 @Table(name="request_details")
 public class RequestEntity {
